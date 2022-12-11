@@ -25,7 +25,7 @@ import BackgroundIcon from '@mui/icons-material/LocalActivity';
  */
 function App() {
     // ! don't modify initial data
-    const [tickets] = useState([
+    const [tickets, setTickets] = useState([
         {
             uuid: 'awsd1',
             headline: 'Join us',
@@ -42,7 +42,6 @@ function App() {
 
     return <Container maxWidth='sm'>
         {tickets.map((ticket, i) => (
-
             <Box key={i} sx={{my: 3, border: 3, borderColor: 'primary.main'}}>
                 <Grid container direction="row" spacing={0} >
                     <Grid item xs padding={1}>
@@ -50,7 +49,12 @@ function App() {
                         <Typography variant='h3' align='center' color='primary.main' textTransform={'uppercase'}>{ (ticket.headline)}</Typography>
                         <Typography variant='h5' align='center' color='primary.main' textTransform={'uppercase'}>{ ticket.name}</Typography>            
                     </Grid>
-                    <Button variant="contained" disableElevation sx={{borderRadius: 0, p:0}}>
+                    <Button 
+                        variant="contained" 
+                        disableElevation 
+                        onClick={() => {setTickets(tickets.filter((item, i) => item.uuid !== ticket.uuid));}} 
+                        sx={{borderRadius: 0, p:0}}
+                    >
                         <Grid item width={100}>
                             <Typography textTransform={'lowercase'}>{ticket.uuid}</Typography>
                         </Grid>
