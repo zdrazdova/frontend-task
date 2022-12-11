@@ -43,11 +43,14 @@ function App() {
     return <Container maxWidth='sm'>
         {tickets.map((ticket, i) => (
             <Box key={i} sx={{my: 3, border: 3, borderColor: 'primary.main'}}>
-                <Grid container direction="row" spacing={0} >
-                    <Grid item xs padding={1}>
-                        <BackgroundIcon color='disabled'/>
+                <Grid container direction="row" spacing={0}  >
+                    {/*<Grid item xs padding={1} sx={{ backgroundImage: `url(${BackgroundIcon})`}}>*/}
+                    <Grid item xs padding={1} sx={{position: 'relative'}}>
                         <Typography variant='h3' align='center' color='primary.main' textTransform={'uppercase'}>{ (ticket.headline)}</Typography>
+
                         <Typography variant='h5' align='center' color='primary.main' textTransform={'uppercase'}>{ ticket.name}</Typography>            
+                        <BackgroundIcon sx={{p: 0, m: 0,  color: '#dddddd', display: 'block', position: 'absolute', top: -2, left: 'calc(50% - 50px)', width: 100, height: 75, zIndex:-1}} />
+
                     </Grid>
                     <Button 
                         variant="contained" 
@@ -60,7 +63,6 @@ function App() {
                         </Grid>
                     </Button>
                 </Grid>
-                { /*<BackgroundIcon color='disabled' style={{left: 0, top: 0, width: 'auto', height: 'auto'}} />*/}
 
 
             </Box>
