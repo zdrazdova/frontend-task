@@ -5,9 +5,13 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 // icons
 import BackgroundIcon from '@mui/icons-material/LocalActivity';
+
+
 
 
 /**
@@ -34,11 +38,29 @@ function App() {
         }
     ]);
 
+
+
     return <Container maxWidth='sm'>
-        <Box sx={{my: 2, p: 2}}>
-            <Typography variant='h3'>{'title'}</Typography>
-            <BackgroundIcon />
-        </Box>
+        {tickets.map((ticket, i) => (
+
+            <Box key={i} sx={{my: 3, border: 3, borderColor: 'primary.main'}}>
+                <Grid container direction="row" spacing={0} >
+                    <Grid item xs padding={1}>
+                        <BackgroundIcon color='disabled'/>
+                        <Typography variant='h3' align='center' color='primary.main' textTransform={'uppercase'}>{ (ticket.headline)}</Typography>
+                        <Typography variant='h5' align='center' color='primary.main' textTransform={'uppercase'}>{ ticket.name}</Typography>            
+                    </Grid>
+                    <Button variant="contained" disableElevation sx={{borderRadius: 0, p:0}}>
+                        <Grid item width={100}>
+                            <Typography textTransform={'lowercase'}>{ticket.uuid}</Typography>
+                        </Grid>
+                    </Button>
+                </Grid>
+                { /*<BackgroundIcon color='disabled' style={{left: 0, top: 0, width: 'auto', height: 'auto'}} />*/}
+
+
+            </Box>
+        ))}
     </Container>;
 }
 
